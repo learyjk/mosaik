@@ -1,0 +1,33 @@
+{
+  "name": "mosaik",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "serve",
+    "build": "esbuild ./src/* --bundle --sourcemap --outdir=dist",
+    "format": "prettier src/*.ts -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/learyjk/mosaik.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/learyjk/mosaik/issues"
+  },
+  "homepage": "https://github.com/learyjk/mosaik#readme",
+  "devDependencies": {
+    "esbuild": "^0.15.13",
+    "prettier": "^2.7.1",
+    "serve": "^14.1.1",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "@studio-freight/lenis": "^0.2.21",
+    "gsap": "^3.11.3",
+    "split-type": "^0.3.3"
+  }
+}
