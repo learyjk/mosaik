@@ -7399,12 +7399,81 @@
       stagger: 0.05
     });
   };
+  var searchAnimation = () => {
+    const searchBullets = document.querySelector(
+      '[wb-data="search-bullets"]'
+    )?.childNodes;
+    const searchImages = document.querySelector(
+      '[wb-data="search-images"]'
+    )?.childNodes;
+    if (!searchBullets || !searchImages)
+      return;
+    const tl = gsapWithCSS.timeline({
+      scrollTrigger: {
+        trigger: '[wb-data="search-wrapper"]',
+        start: "top 50%",
+        end: "bottom 100%",
+        scrub: true,
+        markers: true
+      }
+    });
+    gsapWithCSS.set(searchBullets, { opacity: 0, xPercent: -100 });
+    gsapWithCSS.set(searchImages, { opacity: 0 });
+    tl.to(searchBullets, { opacity: 1, xPercent: 0, stagger: 1 }).to(searchImages, { opacity: 1, stagger: 1 }, "<").to(searchImages, { opacity: 0, stagger: 1 }, "<+=1");
+  };
+  var keepClientsAnimation = () => {
+    const keepClientsText = document.querySelector(
+      '[wb-data="keep-clients"]'
+    );
+    if (!keepClientsText) {
+      return;
+    }
+    const splitkeepClientsText = new SplitType(keepClientsText);
+    const tl = gsapWithCSS.timeline({
+      scrollTrigger: {
+        trigger: '[wb-data="keep-clients-wrapper"]',
+        start: "top 50%",
+        end: "bottom 90%",
+        scrub: true,
+        markers: true
+      }
+    });
+    tl.from(splitkeepClientsText.words, {
+      opacity: 0.2,
+      duration: 0.8,
+      ease: "power1.out",
+      stagger: { each: 0.8 }
+    });
+  };
+  var sealDealAnimation = () => {
+    const sealDealText = document.querySelector(
+      '[wb-data="seal-deal"]'
+    );
+    if (!sealDealText)
+      return;
+    const splitSealDealText = new SplitType(sealDealText);
+    gsapWithCSS.from(splitSealDealText.chars, {
+      scrollTrigger: {
+        trigger: sealDealText,
+        start: "bottom 90%",
+        end: "bottom 50%",
+        scrub: true,
+        markers: true
+      },
+      opacity: 0,
+      yPercent: 100,
+      stagger: 0.05
+    });
+  };
   var init4 = () => {
     gsapWithCSS.set("[wb-data]", { autoAlpha: 1 });
     heroAnimation();
     mosaikIsDesignedAnimation();
     sayHelloToAnimation();
     moldBarAnimation();
+    searchAnimation();
+    keepClientsAnimation();
+    sealDealAnimation();
   };
   document.addEventListener("DOMContentLoaded", init4);
 })();
