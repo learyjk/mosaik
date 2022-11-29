@@ -7285,23 +7285,13 @@
     const splitHeroText = new SplitType(heroText);
     const splitHeroSubtitle = new SplitType(heroSubtitle);
     const tl = gsapWithCSS.timeline();
-    tl.from(splitHeroText.lines, {
-      y: "100%",
-      skewX: "-8",
-      autoAlpha: 0,
-      stagger: 0.3,
-      ease: "expo.out"
-    }).from(
-      splitHeroSubtitle.words,
-      {
-        opacity: 0,
-        x: "1em",
-        duration: 1,
-        ease: "power2.out",
-        stagger: { amount: 0.2 }
-      },
-      ">"
-    ).from(videoLink, { opacity: 0, scale: 0 }, ">");
+    tl.from(splitHeroSubtitle.words, {
+      opacity: 0,
+      x: "1em",
+      duration: 1,
+      ease: "power2.out",
+      stagger: { amount: 0.2 }
+    }).from(videoLink, { opacity: 0, scale: 0 }, ">");
   };
   var mosaikIsDesignedAnimation = () => {
     const mosaikIsDesignedText = document.querySelector(
