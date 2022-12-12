@@ -7346,8 +7346,7 @@
         trigger: '[wb-data="say-hello-wrapper"]',
         start: "top 0%",
         end: "bottom 100%",
-        scrub: true,
-        markers: true
+        scrub: true
       }
     });
     tl2.to(sayHelloTextBullets[0], {
@@ -7381,8 +7380,7 @@
         trigger: moldBarText,
         start: "bottom 90%",
         end: "bottom 50%",
-        scrub: true,
-        markers: true
+        scrub: true
       },
       opacity: 0,
       yPercent: 100,
@@ -7403,37 +7401,12 @@
         trigger: '[wb-data="search-wrapper"]',
         start: "top 50%",
         end: "bottom 100%",
-        scrub: true,
-        markers: true
+        scrub: true
       }
     });
     gsapWithCSS.set(searchBullets, { opacity: 0, xPercent: -100 });
     gsapWithCSS.set(searchImages, { opacity: 0 });
     tl.to(searchBullets, { opacity: 1, xPercent: 0, stagger: 1 }).to(searchImages, { opacity: 1, stagger: 1 }, "<").to(searchImages, { opacity: 0, stagger: 1 }, "<+=1");
-  };
-  var keepClientsAnimation = () => {
-    const keepClientsText = document.querySelector(
-      '[wb-data="keep-clients"]'
-    );
-    if (!keepClientsText) {
-      return;
-    }
-    const splitkeepClientsText = new SplitType(keepClientsText);
-    const tl = gsapWithCSS.timeline({
-      scrollTrigger: {
-        trigger: '[wb-data="keep-clients-wrapper"]',
-        start: "top 50%",
-        end: "bottom 90%",
-        scrub: true,
-        markers: true
-      }
-    });
-    tl.from(splitkeepClientsText.words, {
-      opacity: 0.2,
-      duration: 0.8,
-      ease: "power1.out",
-      stagger: { each: 0.8 }
-    });
   };
   var sealDealAnimation = () => {
     const sealDealText = document.querySelector(
@@ -7447,8 +7420,90 @@
         trigger: sealDealText,
         start: "bottom 90%",
         end: "bottom 50%",
-        scrub: true,
-        markers: true
+        scrub: true
+      },
+      opacity: 0,
+      yPercent: 100,
+      stagger: 0.05
+    });
+  };
+  var transactionRoomAnimation = () => {
+    const transactionBullets = document.querySelector(
+      '[wb-data="transaction-bullets"]'
+    )?.childNodes;
+    const transactionWrapper = document.querySelector(
+      '[wb-data="transaction-wrapper"]'
+    );
+    const transactionVideo = transactionWrapper?.querySelector("video");
+    if (!transactionBullets || !transactionVideo)
+      return;
+    const tl = gsapWithCSS.timeline({
+      scrollTrigger: {
+        trigger: transactionWrapper,
+        start: "top 50%",
+        end: "bottom 100%",
+        scrub: true
+      }
+    });
+    gsapWithCSS.set(transactionBullets, { opacity: 0, xPercent: -100 });
+    gsapWithCSS.set(transactionVideo, { opacity: 0, scale: 0.8 });
+    tl.to(transactionBullets, { opacity: 1, xPercent: 0, stagger: 1 }).to(
+      transactionVideo,
+      { opacity: 1, scale: 1 },
+      "<"
+    );
+  };
+  var homeBaseAnimation = () => {
+    const homeBaseText = document.querySelector(
+      '[wb-data="home-base"]'
+    );
+    if (!homeBaseText)
+      return;
+    const splitHomeBaseText = new SplitType(homeBaseText);
+    gsapWithCSS.from(splitHomeBaseText.chars, {
+      scrollTrigger: {
+        trigger: homeBaseText,
+        start: "bottom 90%",
+        end: "bottom 50%",
+        scrub: true
+      },
+      opacity: 0,
+      yPercent: 100,
+      stagger: 0.05
+    });
+  };
+  var makeMoveAnimation = () => {
+    const makeMoveText = document.querySelector(
+      '[wb-data="make-move"]'
+    );
+    if (!makeMoveText)
+      return;
+    const splitMakeMoveText = new SplitType(makeMoveText);
+    gsapWithCSS.from(splitMakeMoveText.chars, {
+      scrollTrigger: {
+        trigger: makeMoveText,
+        start: "bottom 90%",
+        end: "bottom 50%",
+        scrub: true
+      },
+      opacity: 0,
+      yPercent: 100,
+      stagger: 0.05
+    });
+  };
+  var powerfulAnimation = () => {
+    const headlineText = document.querySelector(
+      '[wb-data="powerful"]'
+    );
+    if (!headlineText)
+      return;
+    const splitHeadlineText = new SplitType(headlineText);
+    gsapWithCSS.from(splitHeadlineText.chars, {
+      scrollTrigger: {
+        trigger: headlineText,
+        start: "bottom 90%",
+        end: "bottom 50%",
+        scrub: true
       },
       opacity: 0,
       yPercent: 100,
@@ -7462,8 +7517,11 @@
     sayHelloToAnimation();
     moldBarAnimation();
     searchAnimation();
-    keepClientsAnimation();
     sealDealAnimation();
+    transactionRoomAnimation();
+    homeBaseAnimation();
+    makeMoveAnimation();
+    powerfulAnimation();
   };
   document.addEventListener("DOMContentLoaded", init4);
 })();

@@ -117,7 +117,6 @@ const sayHelloToAnimation = () => {
       start: "top 0%",
       end: "bottom 100%",
       scrub: true,
-      markers: true,
     },
   });
   tl2
@@ -159,7 +158,6 @@ const moldBarAnimation = () => {
       start: "bottom 90%",
       end: "bottom 50%",
       scrub: true,
-      markers: true,
     },
     opacity: 0,
     yPercent: 100,
@@ -183,7 +181,6 @@ const searchAnimation = () => {
       start: "top 50%",
       end: "bottom 100%",
       scrub: true,
-      markers: true,
     },
   });
 
@@ -210,7 +207,6 @@ const keepClientsAnimation = () => {
       start: "top 50%",
       end: "bottom 90%",
       scrub: true,
-      markers: true,
     },
   });
   tl.from(splitkeepClientsText.words, {
@@ -234,7 +230,96 @@ const sealDealAnimation = () => {
       start: "bottom 90%",
       end: "bottom 50%",
       scrub: true,
-      markers: true,
+    },
+    opacity: 0,
+    yPercent: 100,
+    stagger: 0.05,
+  });
+};
+
+const transactionRoomAnimation = () => {
+  const transactionBullets = document.querySelector(
+    '[wb-data="transaction-bullets"]'
+  )?.childNodes;
+
+  const transactionWrapper = document.querySelector(
+    '[wb-data="transaction-wrapper"]'
+  );
+  const transactionVideo = transactionWrapper?.querySelector("video");
+
+  if (!transactionBullets || !transactionVideo) return;
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: transactionWrapper,
+      start: "top 50%",
+      end: "bottom 100%",
+      scrub: true,
+    },
+  });
+
+  gsap.set(transactionBullets, { opacity: 0, xPercent: -100 });
+  gsap.set(transactionVideo, { opacity: 0, scale: 0.8 });
+  tl.to(transactionBullets, { opacity: 1, xPercent: 0, stagger: 1 }).to(
+    transactionVideo,
+    { opacity: 1, scale: 1 },
+    "<"
+  );
+};
+
+const homeBaseAnimation = () => {
+  const homeBaseText = document.querySelector<HTMLDivElement>(
+    '[wb-data="home-base"]'
+  );
+  if (!homeBaseText) return;
+  const splitHomeBaseText = new SplitType(homeBaseText);
+
+  gsap.from(splitHomeBaseText.chars, {
+    scrollTrigger: {
+      trigger: homeBaseText,
+      start: "bottom 90%",
+      end: "bottom 50%",
+      scrub: true,
+    },
+    opacity: 0,
+    yPercent: 100,
+    stagger: 0.05,
+  });
+};
+
+const makeMoveAnimation = () => {
+  const makeMoveText = document.querySelector<HTMLDivElement>(
+    '[wb-data="make-move"]'
+  );
+  if (!makeMoveText) return;
+  const splitMakeMoveText = new SplitType(makeMoveText);
+
+  gsap.from(splitMakeMoveText.chars, {
+    scrollTrigger: {
+      trigger: makeMoveText,
+      start: "bottom 90%",
+      end: "bottom 50%",
+      scrub: true,
+    },
+    opacity: 0,
+    yPercent: 100,
+    stagger: 0.05,
+  });
+};
+
+const powerfulAnimation = () => {
+  const headlineText = document.querySelector<HTMLDivElement>(
+    '[wb-data="powerful"]'
+  );
+  if (!headlineText) return;
+  const splitHeadlineText = new SplitType(headlineText);
+
+  gsap.from(splitHeadlineText.chars, {
+    scrollTrigger: {
+      trigger: headlineText,
+      start: "bottom 90%",
+      end: "bottom 50%",
+      scrub: true,
     },
     opacity: 0,
     yPercent: 100,
@@ -249,8 +334,12 @@ const init = () => {
   sayHelloToAnimation();
   moldBarAnimation();
   searchAnimation();
-  keepClientsAnimation();
+  //keepClientsAnimation();
   sealDealAnimation();
+  transactionRoomAnimation();
+  homeBaseAnimation();
+  makeMoveAnimation();
+  powerfulAnimation();
 };
 
 document.addEventListener("DOMContentLoaded", init);
