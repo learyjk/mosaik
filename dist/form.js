@@ -106,6 +106,7 @@
         console.log(`submit attempt current step: ${currentStep}`);
         if (currentStep === numberOfSteps - 1) {
           console.log("submitting form");
+          backButton.classList.add("hide");
           return true;
         } else {
           return false;

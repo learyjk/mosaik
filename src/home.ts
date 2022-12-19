@@ -37,6 +37,12 @@ const heroAnimation = () => {
   if (!heroText || !heroSubtitle || !videoLink) {
     return;
   }
+  const scrollIndWrapper = document.querySelector<HTMLDivElement>(
+    '[wb-data="scroll-ind"]'
+  );
+  if (!scrollIndWrapper) {
+    return;
+  }
 
   const splitHeroText = new SplitType(heroText);
   const splitHeroSubtitle = new SplitType(heroSubtitle);
@@ -53,10 +59,11 @@ const heroAnimation = () => {
   tl.from(splitHeroSubtitle.words, {
     opacity: 0,
     x: "1em",
-    duration: 1,
     ease: "power2.out",
     stagger: { amount: 0.2 },
-  }).from(videoLink, { opacity: 0, scale: 0 }, ">");
+  })
+    .from(videoLink, { opacity: 0, scale: 0 }, ">")
+    .from(scrollIndWrapper, { opacity: 0, yPercent: 100 }, ">");
 };
 
 const mosaikIsDesignedAnimation = () => {
@@ -142,6 +149,12 @@ const sayHelloToAnimation = () => {
       sayHelloTextBullets[2],
       { opacity: 0, yPercent: -100, ease: "none" },
       ">+=3"
+    )
+    .to(sayHelloTextBullets[3], { opacity: 1, yPercent: 0, ease: "none" }, ">")
+    .to(
+      sayHelloTextBullets[3],
+      { opacity: 1, yPercent: 0, ease: "none" },
+      ">+=6"
     );
 };
 

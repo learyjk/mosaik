@@ -7,12 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!wTabContent) return;
   const formContentPanes =
     wTabContent.querySelectorAll<HTMLDivElement>("[data-w-tab]");
-
   const tabMenu = form.querySelector<HTMLDivElement>(".w-tab-menu");
   if (!tabMenu) return;
   const tabLinks = tabMenu.querySelectorAll<HTMLAnchorElement>("a");
   if (!tabLinks) return;
-
   const nextButton = form.querySelector<HTMLAnchorElement>(
     '[wb-data="next-button"]'
   );
@@ -25,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     '[wb-data="submit-button"]'
   );
   if (!submitButton) return;
-
   debug && console.log("selectors finished");
 
   // set current step to start form
@@ -117,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log(`submit attempt current step: ${currentStep}`);
       if (currentStep === numberOfSteps - 1) {
         console.log("submitting form");
+        backButton.classList.add("hide");
         return true;
       } else {
         return false;

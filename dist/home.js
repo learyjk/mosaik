@@ -7282,16 +7282,21 @@
     if (!heroText || !heroSubtitle || !videoLink) {
       return;
     }
+    const scrollIndWrapper = document.querySelector(
+      '[wb-data="scroll-ind"]'
+    );
+    if (!scrollIndWrapper) {
+      return;
+    }
     const splitHeroText = new SplitType(heroText);
     const splitHeroSubtitle = new SplitType(heroSubtitle);
     const tl = gsapWithCSS.timeline();
     tl.from(splitHeroSubtitle.words, {
       opacity: 0,
       x: "1em",
-      duration: 1,
       ease: "power2.out",
       stagger: { amount: 0.2 }
-    }).from(videoLink, { opacity: 0, scale: 0 }, ">");
+    }).from(videoLink, { opacity: 0, scale: 0 }, ">").from(scrollIndWrapper, { opacity: 0, yPercent: 100 }, ">");
   };
   var mosaikIsDesignedAnimation = () => {
     const mosaikIsDesignedText = document.querySelector(
@@ -7366,6 +7371,10 @@
       sayHelloTextBullets[2],
       { opacity: 0, yPercent: -100, ease: "none" },
       ">+=3"
+    ).to(sayHelloTextBullets[3], { opacity: 1, yPercent: 0, ease: "none" }, ">").to(
+      sayHelloTextBullets[3],
+      { opacity: 1, yPercent: 0, ease: "none" },
+      ">+=6"
     );
   };
   var moldBarAnimation = () => {
