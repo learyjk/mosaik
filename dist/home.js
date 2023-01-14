@@ -7305,20 +7305,16 @@
     if (!mosaikIsDesignedText) {
       return;
     }
-    const splitMosaikDesignedText = new SplitType(mosaikIsDesignedText);
-    const tl = gsapWithCSS.timeline({
+    gsapWithCSS.from(mosaikIsDesignedText, {
       scrollTrigger: {
-        trigger: '[wb-data="mosaik-designed-wrapper"]',
-        start: "top 50%",
-        end: "bottom 90%",
+        trigger: mosaikIsDesignedText,
+        start: "top 100%",
         scrub: true
-      }
-    });
-    tl.from(splitMosaikDesignedText.words, {
-      opacity: 0.2,
-      duration: 0.8,
-      ease: "power1.out",
-      stagger: { each: 0.8 }
+      },
+      opacity: 0,
+      yPercent: 100,
+      duration: 2,
+      ease: "power3.out"
     });
   };
   var sayHelloToAnimation = () => {
@@ -7359,19 +7355,7 @@
       yPercent: 0,
       ease: "none",
       delay: 1
-    }).to(
-      sayHelloTextBullets[0],
-      { opacity: 0, yPercent: -100, ease: "none" },
-      ">+=3"
-    ).to(sayHelloTextBullets[1], { opacity: 1, yPercent: 0, ease: "none" }).to(
-      sayHelloTextBullets[1],
-      { opacity: 0, yPercent: -100, ease: "none" },
-      ">+=3"
-    ).to(sayHelloTextBullets[2], { opacity: 1, yPercent: 0, ease: "none" }).to(
-      sayHelloTextBullets[2],
-      { opacity: 0, yPercent: -100, ease: "none" },
-      ">+=3"
-    ).to(sayHelloTextBullets[3], { opacity: 1, yPercent: 0, ease: "none" }, ">").to(
+    }).to(sayHelloTextBullets[1], { opacity: 1, yPercent: 0, ease: "none" }).to(sayHelloTextBullets[2], { opacity: 1, yPercent: 0, ease: "none" }).to(sayHelloTextBullets[3], { opacity: 1, yPercent: 0, ease: "none" }, ">").to(
       sayHelloTextBullets[3],
       { opacity: 1, yPercent: 0, ease: "none" },
       ">+=6"
@@ -7387,8 +7371,8 @@
     gsapWithCSS.from(splitHeroText.chars, {
       scrollTrigger: {
         trigger: moldBarText,
-        start: "bottom 90%",
-        end: "bottom 50%",
+        start: "top 90%",
+        end: "top 50%",
         scrub: true
       },
       opacity: 0,
@@ -7417,6 +7401,25 @@
     gsapWithCSS.set(searchImages, { opacity: 0 });
     tl.to(searchBullets, { opacity: 1, xPercent: 0, stagger: 1 }).to(searchImages, { opacity: 1, stagger: 1 }, "<").to(searchImages, { opacity: 0, stagger: 1 }, "<+=1");
   };
+  var keepClientsAnimation = () => {
+    const keepClientsText = document.querySelector(
+      '[wb-data="keep-clients"]'
+    );
+    if (!keepClientsText) {
+      return;
+    }
+    gsapWithCSS.from(keepClientsText, {
+      scrollTrigger: {
+        trigger: keepClientsText,
+        start: "top 100%",
+        scrub: true
+      },
+      opacity: 0,
+      yPercent: -100,
+      duration: 2,
+      ease: "power3.out"
+    });
+  };
   var sealDealAnimation = () => {
     const sealDealText = document.querySelector(
       '[wb-data="seal-deal"]'
@@ -7427,8 +7430,8 @@
     gsapWithCSS.from(splitSealDealText.chars, {
       scrollTrigger: {
         trigger: sealDealText,
-        start: "bottom 90%",
-        end: "bottom 50%",
+        start: "top 90%",
+        end: "top 50%",
         scrub: true
       },
       opacity: 0,
@@ -7443,16 +7446,30 @@
     const transactionWrapper = document.querySelector(
       '[wb-data="transaction-wrapper"]'
     );
+    const transactionSticky = document.querySelector(
+      '[wb-data="transaction-sticky"]'
+    );
     const transactionVideo = transactionWrapper?.querySelector("video");
     if (!transactionBullets || !transactionVideo)
       return;
     const tl = gsapWithCSS.timeline({
       scrollTrigger: {
         trigger: transactionWrapper,
-        start: "top 50%",
+        start: "top 0%",
         end: "bottom 100%",
         scrub: true
       }
+    });
+    gsapWithCSS.from(transactionSticky, {
+      scrollTrigger: {
+        trigger: transactionWrapper,
+        start: "top 100%",
+        end: "top 0%",
+        scrub: true,
+        markers: true
+      },
+      opacity: 0,
+      yPercent: -100
     });
     gsapWithCSS.set(transactionBullets, { opacity: 0, xPercent: -100 });
     gsapWithCSS.set(transactionVideo, { opacity: 0, scale: 0.8 });
@@ -7472,8 +7489,8 @@
     gsapWithCSS.from(splitHomeBaseText.chars, {
       scrollTrigger: {
         trigger: homeBaseText,
-        start: "bottom 90%",
-        end: "bottom 50%",
+        start: "top 90%",
+        end: "top 50%",
         scrub: true
       },
       opacity: 0,
@@ -7491,8 +7508,8 @@
     gsapWithCSS.from(splitMakeMoveText.chars, {
       scrollTrigger: {
         trigger: makeMoveText,
-        start: "bottom 90%",
-        end: "bottom 50%",
+        start: "top 90%",
+        end: "top 50%",
         scrub: true
       },
       opacity: 0,
@@ -7510,8 +7527,8 @@
     gsapWithCSS.from(splitHeadlineText.chars, {
       scrollTrigger: {
         trigger: headlineText,
-        start: "bottom 90%",
-        end: "bottom 50%",
+        start: "top 90%",
+        end: "top 50%",
         scrub: true
       },
       opacity: 0,
@@ -7526,6 +7543,7 @@
     sayHelloToAnimation();
     moldBarAnimation();
     searchAnimation();
+    keepClientsAnimation();
     sealDealAnimation();
     transactionRoomAnimation();
     homeBaseAnimation();
