@@ -7465,8 +7465,7 @@
         trigger: transactionWrapper,
         start: "top 100%",
         end: "top 0%",
-        scrub: true,
-        markers: true
+        scrub: true
       },
       opacity: 0,
       yPercent: -100

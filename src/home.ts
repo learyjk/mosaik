@@ -306,7 +306,6 @@ const transactionRoomAnimation = () => {
       start: "top 100%",
       end: "top 0%",
       scrub: true,
-      markers: true,
     },
     opacity: 0,
     yPercent: -100,
