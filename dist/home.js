@@ -7347,7 +7347,8 @@
         trigger: '[wb-data="say-hello-wrapper"]',
         start: "top 0%",
         end: "bottom 100%",
-        scrub: true
+        scrub: true,
+        markers: true
       }
     });
     tl2.to(sayHelloTextBullets[0], {
@@ -7358,7 +7359,7 @@
     }).to(sayHelloTextBullets[1], { opacity: 1, yPercent: 0, ease: "none" }).to(sayHelloTextBullets[2], { opacity: 1, yPercent: 0, ease: "none" }).to(sayHelloTextBullets[3], { opacity: 1, yPercent: 0, ease: "none" }, ">").to(
       sayHelloTextBullets[3],
       { opacity: 1, yPercent: 0, ease: "none" },
-      ">+=6"
+      ">+=1"
     );
   };
   var moldBarAnimation = () => {

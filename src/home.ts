@@ -4,6 +4,8 @@ import SplitType from "split-type";
 import Lenis from "@studio-freight/lenis";
 import gsapTrial from "gsap-trial";
 
+//https://cdn.jsdelivr.net/gh/learyjk/mosaik@v1.1.1/dist/home.js
+
 const lenis = new Lenis({
   duration: 1.2,
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
@@ -137,6 +139,7 @@ const sayHelloToAnimation = () => {
       start: "top 0%",
       end: "bottom 100%",
       scrub: true,
+      markers: true,
     },
   });
   tl2
@@ -167,7 +170,7 @@ const sayHelloToAnimation = () => {
     .to(
       sayHelloTextBullets[3],
       { opacity: 1, yPercent: 0, ease: "none" },
-      ">+=6"
+      ">+=1"
     );
 };
 
