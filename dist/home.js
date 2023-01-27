@@ -7347,8 +7347,7 @@
         trigger: '[wb-data="say-hello-wrapper"]',
         start: "top 0%",
         end: "bottom 100%",
-        scrub: true,
-        markers: true
+        scrub: true
       }
     });
     tl2.to(sayHelloTextBullets[0], {
