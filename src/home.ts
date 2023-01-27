@@ -139,7 +139,6 @@ const sayHelloToAnimation = () => {
       start: "top 0%",
       end: "bottom 100%",
       scrub: true,
-      markers: true,
     },
   });
   tl2
